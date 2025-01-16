@@ -6,6 +6,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+import android.R;
 
 import java.util.ArrayList;
 
@@ -44,11 +45,17 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
     // Define a ViewHolder as an inner class, which tells the adapter which views to use for th data items.
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView category;
+        public TextView access_code;
+        public TextView station_name;
+        public TextView street_address;
+        public TextView city;
 
         public ViewHolder(@NonNull View view) {
             super(view);
-            category = (TextView) view.findViewById(R.id.tv_category);
+            access_code = (TextView) view.findViewById(R.id.tv_access_code);
+            station_name = (TextView) view.findViewById(R.id.tv_station_name);
+            street_address = (TextView) view.findViewById(R.id.tv_street_address);
+            city = (TextView) view.findViewById(R.id.tv_city);
         }
     }
 }
