@@ -94,6 +94,19 @@
             android:layout_marginStart="8dp"
             android:textSize="14sp" />
 
+        <TextView
+            android:id="@+id/tv_facility_type"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginBottom="4dp" />
+
+        <Button
+            android:id="@+id/test_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/self_destruction" />
+
         <!--
         <TextView
             android:id="@+id/tv_tz_id"

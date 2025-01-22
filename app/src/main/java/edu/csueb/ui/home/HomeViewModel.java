@@ -7,17 +7,20 @@ import android.util.Log;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModelProvider;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 import edu.csueb.Model.FuelStationModel;
-import edu.csueb.Pattern.Singleton.FuelStationSingleton;
+import edu.csueb.Pattern.Singleton.FuelStationViewModel;
+import edu.csueb.ViewModel.FSViewModel;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -27,8 +30,8 @@ public class HomeViewModel extends ViewModel {
     private final MutableLiveData<ArrayList<FuelStationModel>> liveData;
 
     // Singleton - Android Programming for Beginners [423]
-    public FuelStationSingleton fuelstationSingleton = FuelStationSingleton.getInstance();
-    public ArrayList<FuelStationModel> model = fuelstationSingleton.getData();
+    public FuelStationViewModel fuelStationViewModel = FuelStationViewModel.getInstance();
+    public ArrayList<FuelStationModel> model = fuelStationViewModel.getData();
 
     /*
         A map is an object that stores associations between keys and values, or key/value pairs.
@@ -97,6 +100,14 @@ public MutableLiveData<ArrayList<ArtistModel>> getLiveData() {
 }
 */
 
+    /**
+     * 1. Make an HTTP Request to the API and save the json to disk.
+     * 2. Open the file (that was just downloaded) and parse it using: StringBuilder
+     * 3. The StringBuilder is then passed to JSONObject(StringBuilder sb) to create the json object
+     *
+     * https://github.com/weatherpub/News/blob/main/app/src/main/java/edu/sfsu/news/ui/home/HomeFragment.java*
+     */
+
     public class FSAsyncTask extends AsyncTask<String, String, String> {
 
         @Override
@@ -126,7 +137,13 @@ public MutableLiveData<ArrayList<ArtistModel>> getLiveData() {
             }
         }
 
-        protected void onProgressUpdate(String... values) {}
+        protected void onProgressUpdate(String... values) {
+
+        }
+
+        protected void onPostExecute() {
+
+        }
 
         @Override
         protected void onPostExecute(String result) {
