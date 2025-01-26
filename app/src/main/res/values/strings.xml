@@ -1,7 +1,8 @@
 <resources>
     <string name="app_name">AlternativeFuelStations</string>
     <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_map">Map</string>
+    <string name="title_filter">Filter</string>
     <string name="self_destruction">Destruction</string>
+    <string name="hint">Name</string>
 </resources>

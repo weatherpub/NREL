@@ -7,20 +7,17 @@ import android.util.Log;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
-import androidx.lifecycle.ViewModelProvider;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 import edu.csueb.Model.FuelStationModel;
 import edu.csueb.Pattern.Singleton.FuelStationViewModel;
-import edu.csueb.ViewModel.FSViewModel;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -61,7 +58,7 @@ public class HomeViewModel extends ViewModel {
         url.put("state", "CA");
         url.put("limit", "6");
 
-        Log.i("fs", "url -> " + url.entrySet().toString());
+        Log.i("log", "url -> " + url.entrySet().toString());
 
         liveData = new MutableLiveData<>();
 
@@ -71,34 +68,6 @@ public class HomeViewModel extends ViewModel {
     public LiveData<ArrayList<FuelStationModel>> getLiveData() {
         return liveData;
     }
-
-/*
-public HomeViewModel(MutableLiveData<ArrayList<FuelStationModel>> data) {
-    this.data = data;
-    live_data = new MutableLiveData<>();
-
-    // Get Reference to ArtistViewModel.
-    FuelStationModel fuelStationModel = FuelStationModel.getInstance();
-
-    model_data = fuelStationModel.getData();
-
-    int artistId = 111352; // Taylor
-
-    new FSAsyncTask().execute("https://www.theaudiodb.com/api/v1/json/2/artist.php?i=" + artistId);
-}
-
-MutableLiveData returns the json object from onPostExecute()
-
-public MutableLiveData<ArrayList<ArtistModel>> getLiveData() {
-    if(live_data == null) {
-        live_data = new MutableLiveData<>();
-    }
-
-    Log.i("LOG", "LiveData-> after new mutableLiveData<>() " + live_data);
-
-    return live_data;
-}
-*/
 
     /**
      * 1. Make an HTTP Request to the API and save the json to disk.
@@ -117,17 +86,17 @@ public MutableLiveData<ArrayList<ArtistModel>> getLiveData() {
 
         @Override
         protected String doInBackground(String... param) {
-            Log.v("fs", "doInBackground()");
+            Log.v("log", "doInBackground()");
 
             OkHttpClient client = new OkHttpClient();
             Request request = new Request.Builder().url(param[0]).build();
 
-            Log.v("fs", "doInBackground() after Request request = new" + request);
+            Log.v("log", "doInBackground() after Request request = new" + request);
 
             try {
                 Response response = client.newCall(request).execute();
 
-                if(!response.isSuccessful())
+                if (!response.isSuccessful())
                     return null;
 
                 return response.body().string();
@@ -147,16 +116,17 @@ public MutableLiveData<ArrayList<ArtistModel>> getLiveData() {
 
         @Override
         protected void onPostExecute(String result) {
-            Log.v("fs", "onPostExecute()" + result.toString());
+            Log.v("log", "onPostExecute()" + result.toString());
             super.onPostExecute(result);
+
             try {
                 JSONObject jsonObject = new JSONObject(result);
                 JSONArray obj = jsonObject.getJSONArray("features");
 
-                Log.i("fs", "obj" + "release: 1.0.1 access_code " + obj.getJSONObject(0).getJSONObject("properties").getString("access_code"));
-                Log.i("fs", "obj" + "release: 1.0.1 access_days_time " + obj.getJSONObject(0).getJSONObject("properties").getString("access_days_time"));
+                Log.i("log", "obj" + "release: 1.0.1 access_code " + obj.getJSONObject(0).getJSONObject("properties").getString("access_code"));
+                Log.i("log", "obj" + "release: 1.0.1 access_days_time " + obj.getJSONObject(0).getJSONObject("properties").getString("access_days_time"));
                 // Log.i("fs", "obj" + "release: 1.0.1 ev_connector_types " + obj.getJSONObject(0).getJSONObject("properties").getJSONArray("ev_connector_types").getJSONObject(0).toString());
-                for(int i = 0; i < obj.length(); i++) {
+                for (int i = 0; i < obj.length(); i++) {
                     model.add(new FuelStationModel(
                             obj.getJSONObject(0).getJSONObject("properties").getString("access_code"),
                             obj.getJSONObject(i).getJSONObject("properties").getString("access_days_time"),
@@ -238,11 +208,10 @@ public MutableLiveData<ArrayList<ArtistModel>> getLiveData() {
                 }
                 liveData.setValue(model); // pass the model to the ViewModel
                 // not this! data.setValue(data.getValue());
-            } catch (JSONException | SQLException e) {
+            } catch(JSONException | SQLException e) {
                 throw new RuntimeException(e);
             }
         }
     }
 }
-
 // https://developer.nrel.gov/docs/transportation/alt-fuel-stations-v1/all/

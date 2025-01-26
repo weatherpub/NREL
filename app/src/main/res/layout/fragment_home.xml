@@ -101,11 +101,19 @@
             android:layout_marginStart="4dp"
             android:layout_marginBottom="4dp" />
 
-        <Button
-            android:id="@+id/test_btn"
+        <TextView
+            android:id="@+id/tv_zip"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/self_destruction" />
+            android:layout_marginStart="4dp"
+            android:layout_marginBottom="4dp" />
+
+        <TextView
+            android:id="@+id/tv_updated_at"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginBottom="4dp" />
 
         <!--
         <TextView
