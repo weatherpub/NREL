@@ -79,6 +79,11 @@ public class HomeViewModel extends ViewModel {
             super.onPreExecute();
         }
 
+        /**
+         *
+         * @param param
+         * @return
+         */
         @Override
         protected String doInBackground(String... param) {
             Log.v("log", "doInBackground()");
@@ -109,6 +114,10 @@ public class HomeViewModel extends ViewModel {
 
         }
 
+        /**
+         *
+         * @param result
+         */
         @Override
         protected void onPostExecute(String result) {
             Log.v("log", "onPostExecute()" + result);

@@ -62,12 +62,12 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         private CardView cv;
 
         // Original Code
-        // public ViewHolder(@NonNull View view) {
+        public ViewHolder(@NonNull View view) {
         /**
          *
          * @param view
          */
-        public ViewHolder(@NonNull CardView view) {
+        // public ViewHolder(@NonNull CardView view) {
             super(view);
             access_code = view.findViewById(R.id.tv_access_code);
             station_name = view.findViewById(R.id.tv_station_name);
@@ -86,9 +86,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        // View view = (View) LayoutInflater.from(parent.getContext()).inflate(R.layout.card_view, parent, false);
-        CardView cardView = (CardView) LayoutInflater.from(parent.getContext()).inflate(R.layout.card_view, parent, false);
-        return new ViewHolder(cardView);
+        View view = (View) LayoutInflater.from(parent.getContext()).inflate(R.layout.card_view, parent, false);
+        // CardView view = (CardView) LayoutInflater.from(parent.getContext()).inflate(R.layout.card_view, parent, false);
+        return new ViewHolder(view);
     }
 
     /**
