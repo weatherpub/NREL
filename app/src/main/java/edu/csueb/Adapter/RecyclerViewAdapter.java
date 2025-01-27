@@ -63,6 +63,10 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
         // Original Code
         // public ViewHolder(@NonNull View view) {
+        /**
+         *
+         * @param view
+         */
         public ViewHolder(@NonNull CardView view) {
             super(view);
             access_code = view.findViewById(R.id.tv_access_code);
@@ -72,6 +76,13 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         }
     }
 
+    /**
+     *
+     * @param parent The ViewGroup into which the new View will be added after it is bound to an adapter position.
+     * @param viewType The view type of the new View.
+     *
+     * @return
+     */
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -80,13 +91,22 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         return new ViewHolder(cardView);
     }
 
-    // Return Model size.
+    /**
+     *
+     * @return model.size()
+     */
     @Override
     public int getItemCount() {
         Log.i("LOG", "Model Size: " + model.size());
         return model.size();
     }
 
+    /**
+     *
+     * @param holder The ViewHolder which should be updated to represent the contents of the
+     *        item at the given position in the data set.
+     * @param position The position of the item within the adapter's data set.
+     */
     public void onBindViewHolder(@NonNull RecyclerViewAdapter.ViewHolder holder, @SuppressLint("RecyclerView") int position) {
         View itemView = holder.itemView;
         FuelStationModel item = model.get(position);
@@ -97,6 +117,10 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         holder.city.setText(String.format("%s", item.getCity()));
 
         itemView.setOnClickListener(new View.OnClickListener() {
+            /**
+             *
+             * @param view
+             */
             @Override
             public void onClick(View view) {
                 if(listener != null) {
