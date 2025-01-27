@@ -50,6 +50,8 @@ public class HomeFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         RecyclerViewAdapter recyclerViewAdapter = new RecyclerViewAdapter();
+
+        // Get the ViewModel.
         HomeViewModel homeViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
         model = new ViewModelProvider(this).get(FSViewModel.class);
 
@@ -63,7 +65,7 @@ public class HomeFragment extends Fragment {
         final TextView station_name = binding.tvStationName;
         final TextView station_address = binding.tvStreetAddress;
         final TextView city = binding.tvCity;
-        final TextView facility_type = binding.tvFacilityType;
+        final TextView textView_facility_type = binding.tvFacilityType;
         final TextView zip = binding.tvZip;
         final TextView updated_at = binding.tvUpdatedAt;
 
@@ -76,15 +78,16 @@ public class HomeFragment extends Fragment {
             zip.setText(data.get(0).getZip());
             updated_at.setText(data.get(0).getUpdated_at());
 
-            recyclerView.setAdapter(recyclerViewAdapter);
-            recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+          //  recyclerView.setAdapter(recyclerViewAdapter);
+          //  recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         });
 
         // Update the UI only AFTER the data has changed!
+        // Create an Observer which update the UI.
         final Observer<FuelStationModel> model_observer = new Observer<FuelStationModel>() {
             @Override
             public void onChanged(FuelStationModel fuelStationModel) {
-                facility_type.setText(fuelStationModel.getFacility_type());
+                textView_facility_type.setText(fuelStationModel.getFacility_type());
             }
         };
 

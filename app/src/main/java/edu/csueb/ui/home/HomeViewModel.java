@@ -38,13 +38,10 @@ public class HomeViewModel extends ViewModel {
         Some maps can accept a null key and null values, others cannot.
     */
 
-    private HashMap<String, String> url;
-    private ArrayList<String> fuel_type;
-
     public HomeViewModel() {
-        url = new HashMap<>();
+        HashMap<String, String> url = new HashMap<>();
 
-        fuel_type = new ArrayList<>();
+        ArrayList<String> fuel_type = new ArrayList<>();
         fuel_type.add("BD");
         fuel_type.add("E85");
         fuel_type.add("ELEC");
@@ -58,7 +55,7 @@ public class HomeViewModel extends ViewModel {
         url.put("state", "CA");
         url.put("limit", "6");
 
-        Log.i("log", "url -> " + url.entrySet().toString());
+        Log.i("log", "url -> " + url.entrySet());
 
         liveData = new MutableLiveData<>();
 
@@ -73,8 +70,6 @@ public class HomeViewModel extends ViewModel {
      * 1. Make an HTTP Request to the API and save the json to disk.
      * 2. Open the file (that was just downloaded) and parse it using: StringBuilder
      * 3. The StringBuilder is then passed to JSONObject(StringBuilder sb) to create the json object
-     *
-     * https://github.com/weatherpub/News/blob/main/app/src/main/java/edu/sfsu/news/ui/home/HomeFragment.java*
      */
 
     public class FSAsyncTask extends AsyncTask<String, String, String> {
@@ -116,7 +111,7 @@ public class HomeViewModel extends ViewModel {
 
         @Override
         protected void onPostExecute(String result) {
-            Log.v("log", "onPostExecute()" + result.toString());
+            Log.v("log", "onPostExecute()" + result);
             super.onPostExecute(result);
 
             try {

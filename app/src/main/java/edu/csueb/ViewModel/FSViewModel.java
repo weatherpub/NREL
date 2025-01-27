@@ -1,15 +1,11 @@
 package edu.csueb.ViewModel;
 
-import android.content.Context;
-
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import java.util.ArrayList;
-
 import edu.csueb.Model.FuelStationModel;
 
+// LiveData is an Observable data holder class.
 // LiveData is lifecycle-aware, meaning it respects the lifecycle of other app components
 // such as activities, fragments, or services.
 // this awareness ensures LiveData only updates app component observers that are in an active lifecycle state.
