@@ -1,5 +1,8 @@
 package edu.csueb.Model;
 
+// The DataLayer
+// Job is to expose data to the rest of the app.
+
 public class FuelStationModel {
     private String access_code;
     private String access_days_time;

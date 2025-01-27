@@ -53,7 +53,7 @@ public class HomeViewModel extends ViewModel {
         url.put("apiKey", "bbbDBUupnRSpC9c6dUlXHcDRWhBuynPtyMyK2L0f");
         url.put("fuelType", fuel_type.get(0) + "," + fuel_type.get(1) + "," + fuel_type.get(2) + "," + fuel_type.get(3) + "," + fuel_type.get(4) + "," + fuel_type.get(5) + "," + fuel_type.get(6));
         url.put("state", "CA");
-        url.put("limit", "6");
+        url.put("limit", "9");
 
         Log.i("log", "url -> " + url.entrySet());
 
@@ -107,10 +107,6 @@ public class HomeViewModel extends ViewModel {
         }
 
         protected void onProgressUpdate(String... values) {
-
-        }
-
-        protected void onPostExecute() {
 
         }
 
