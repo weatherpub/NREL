@@ -8,8 +8,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -17,8 +15,6 @@ import java.util.ArrayList;
 import edu.csueb.Model.FuelStationModel;
 import edu.csueb.Pattern.Singleton.FuelStationViewModel;
 import edu.csueb.R;
-import edu.csueb.ViewModel.FSViewModel;
-import edu.csueb.ui.home.HomeViewModel;
 
 /*
     Add a RecyclerView
@@ -57,9 +53,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         public TextView station_name;
         public TextView street_address;
         public TextView city;
-
-        // remove this line if the code doesn't work
-        private CardView cv;
 
         // Original Code
         public ViewHolder(@NonNull View view) {
@@ -108,6 +101,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
      * @param position The position of the item within the adapter's data set.
      */
     public void onBindViewHolder(@NonNull RecyclerViewAdapter.ViewHolder holder, @SuppressLint("RecyclerView") int position) {
+
         View itemView = holder.itemView;
         FuelStationModel item = model.get(position);
 
