@@ -23,6 +23,13 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 public class HomeViewModel extends ViewModel {
+    /*
+     * LiveData: Exposes read-only access to the data. Observers can only observe changes and cannot
+     * modify the data.
+     * MutableLiveData: exposes both read and write access. It is usually encapsulated within a class,
+     * and only LiveData is exposed ot the outside to endure data is not modified directly by external
+     * classes.
+     * */
 
     private final MutableLiveData<ArrayList<FuelStationModel>> liveData;
 
