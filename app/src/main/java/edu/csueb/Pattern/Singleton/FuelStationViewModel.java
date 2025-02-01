@@ -1,6 +1,9 @@
 package edu.csueb.Pattern.Singleton;
 
 import android.util.Log;
+import android.view.View;
+
+import androidx.lifecycle.ViewModel;
 
 import java.util.ArrayList;
 
@@ -9,6 +12,8 @@ import edu.csueb.Model.FuelStationModel;
 // The ViewModel that's part of the ui package use singleton's, not observables.
 
 // This is a singleton example, this doesn't have to be used for MVVM.
+// Notice: FuelStationViewModel does not extend the ViewModel
+// you couldn't instantiate it anyway, because the constructor is private.
 public class FuelStationViewModel {
 
     // Instantiate an instance of itself.
