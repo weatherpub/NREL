@@ -1,7 +1,6 @@
 package edu.csueb.ui.dashboard;
 
 import android.os.AsyncTask;
-import android.util.Log;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -22,17 +21,17 @@ import okhttp3.Response;
 
 public class DashboardViewModel extends ViewModel {
 
-    private final MutableLiveData<String> liveData;
+    private final MutableLiveData<ArrayList<CocktailModel>> liveData;
 
     public CocktailViewModel cocktailViewModel = CocktailViewModel.getInstance(); // CocktailViewModel.getInstance() - gets an instance of CocktailViewModel
     public ArrayList<CocktailModel> model = cocktailViewModel.getData(); // getData() - anyone can get a copy of the Model data.
 
     public DashboardViewModel() {
-        liveData = new MutableLiveData<>();
+        liveData = new MutableLiveData<ArrayList<CocktailModel>>();
         new DashBoardAsyncTask().execute("https://www.thecocktaildb.com/api/json/v1/1/search.php?s=margarita");
     }
 
-    public LiveData<String> getText() {
+    public LiveData<ArrayList<CocktailModel>> getLiveData() {
         return liveData;
     }
 
@@ -60,12 +59,12 @@ public class DashboardViewModel extends ViewModel {
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
 
-            JSONObject jsonObject = null;
-            JSONArray obj = null;
+            // JSONObject jsonObject = null;
+            //JSONArray obj = null;
 
             try {
-                jsonObject = new JSONObject(result);
-                obj = jsonObject.getJSONArray("drinks");
+                JSONObject jsonObject = new JSONObject(result);
+                JSONArray obj = jsonObject.getJSONArray("drinks");
 
                 for (int i = 0; i < obj.length(); i++) {
                     model.add(new CocktailModel(
@@ -125,7 +124,7 @@ public class DashboardViewModel extends ViewModel {
                 throw new RuntimeException(e);
             }
 
-            liveData.setValue(result.toString());
+            liveData.setValue(model);
         }
     }
 }
