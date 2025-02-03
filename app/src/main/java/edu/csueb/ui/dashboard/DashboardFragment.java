@@ -4,12 +4,13 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
+import edu.csueb.Adapter.CocktailRecyclerViewAdapter;
 import edu.csueb.databinding.FragmentDashboardBinding;
 
 public class DashboardFragment extends Fragment {
@@ -24,10 +25,9 @@ public class DashboardFragment extends Fragment {
 
         View view = binding.getRoot();
 
-        final TextView instructions = binding.textInstructions;
-
         dashboardViewModel.getLiveData().observe(getViewLifecycleOwner(), data-> {
-            instructions.setText(data.get(0).getStrInstructions());
+            binding.rvDashboardFragment.setAdapter(new CocktailRecyclerViewAdapter());
+            binding.rvDashboardFragment.setLayoutManager(new LinearLayoutManager(getActivity()));
         });
 
         return view;

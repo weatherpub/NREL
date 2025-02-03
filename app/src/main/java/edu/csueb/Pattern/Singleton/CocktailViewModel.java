@@ -1,13 +1,8 @@
 package edu.csueb.Pattern.Singleton;
 
-import android.util.Log;
-
-import androidx.lifecycle.ViewModel;
-
 import java.util.ArrayList;
 
 import edu.csueb.Model.CocktailModel;
-import edu.csueb.Model.FuelStationModel;
 
 public class CocktailViewModel {
     // Instantiate an instance of itself.
@@ -37,4 +32,4 @@ Create LiveData objects
 
 LiveData is a wrapper that can be used with any data, including objects that implement Collections, such as List.
 A LiveData object is usually stored with in a viewModel object and is accessed via a getter method, as demonstrated in the following example:
- */
+*/

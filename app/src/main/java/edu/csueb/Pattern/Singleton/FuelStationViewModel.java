@@ -1,12 +1,8 @@
 package edu.csueb.Pattern.Singleton;
 
 import android.util.Log;
-import android.view.View;
-
-import androidx.lifecycle.ViewModel;
-
+import androidx.lifecycle.MutableLiveData;
 import java.util.ArrayList;
-
 import edu.csueb.Model.FuelStationModel;
 
 // The ViewModel that's part of the ui package use singleton's, not observables.
@@ -21,6 +17,7 @@ public class FuelStationViewModel {
 
     // Use this method to get an instance of this object.
     private final ArrayList<FuelStationModel> model;
+
     public static FuelStationViewModel getInstance() {
         return obj;
     }
@@ -34,6 +31,10 @@ public class FuelStationViewModel {
     // Anyone can get a list of models.
     public ArrayList<FuelStationModel> getData() {
         return model;
+    }
+
+    public MutableLiveData<ArrayList<FuelStationModel>> get() {
+        return new MutableLiveData<>();
     }
 }
 
