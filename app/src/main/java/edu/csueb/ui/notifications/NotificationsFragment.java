@@ -4,12 +4,9 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
-
 import edu.csueb.databinding.FragmentNotificationsBinding;
 
 public class NotificationsFragment extends Fragment {
@@ -20,12 +17,25 @@ public class NotificationsFragment extends Fragment {
         NotificationsViewModel notificationsViewModel = new ViewModelProvider(this).get(NotificationsViewModel.class);
 
         binding = FragmentNotificationsBinding.inflate(inflater, container, false);
-        View root = binding.getRoot();
 
-        final TextView textView = binding.textNotifications;
-        notificationsViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+        View view = binding.getRoot();
 
-        return root;
+        notificationsViewModel.getText().observe(getViewLifecycleOwner(), data -> {
+            binding.serviceBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    binding.tvMessage.setText("Binding at work");
+                    binding.serviceBtn.setText("Service Started");
+                    /*
+                    Intent intent = new Intent(getActivity(), DashboardViewModel.class);
+                    intent.putExtra(DelayedMessageService.EXTRA_MESSAGE, getResources().getString(R.string.app_name));
+                    startActivity(intent);
+                    */
+                }
+            });
+        });
+
+        return view;
     }
 
     @Override
@@ -34,3 +44,5 @@ public class NotificationsFragment extends Fragment {
         binding = null;
     }
 }
+
+// https://developer.android.com/topic/libraries/view-binding

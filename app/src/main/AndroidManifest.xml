@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
+
     <!-- Google Map -->
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-    <!-- AsyncTask -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" /> <!-- AsyncTask -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -18,21 +18,31 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AlternativeFuelStations"
         tools:targetApi="31">
+        <service
+            android:name=".Service.DelayedMessageService"
+            android:exported="false"></service>
+
         <activity
             android:name=".MainActivity"
             android:exported="true"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <!-- 01.28.25 -->
-        <!-- In your AndroidManifest.xml file update the attribute.
+        </activity> <!-- 01.28.25 -->
+        <!--
+ In your AndroidManifest.xml file update the attribute.
              If the <meta-data> tag does not exist, create it as a child of the
-             <application> tag. -->
-        <meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyDd_KYVpBQq7bV_5_67FesDqvaUBtZYJcM" />
-        <meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version" />
+             <application> tag.
+        -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyDd_KYVpBQq7bV_5_67FesDqvaUBtZYJcM" />
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
     </application>
 
 </manifest>

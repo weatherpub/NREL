@@ -26,6 +26,8 @@ public class DashboardViewModel extends ViewModel {
     public CocktailViewModel cocktailViewModel = CocktailViewModel.getInstance(); // CocktailViewModel.getInstance() - gets an instance of CocktailViewModel
     public ArrayList<CocktailModel> model = cocktailViewModel.getData(); // getData() - anyone can get a copy of the Model data.
 
+
+    // constructor
     public DashboardViewModel() {
         liveData = new MutableLiveData<ArrayList<CocktailModel>>();
         new DashBoardAsyncTask().execute("https://www.thecocktaildb.com/api/json/v1/1/search.php?s=margarita");
