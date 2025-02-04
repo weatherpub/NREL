@@ -6,4 +6,6 @@
     <string name="self_destruction">Destruction</string>
     <string name="hint">Name</string>
     <string name="start_service">Start Service</string>
+    <string name="started_service">Service Started</string>
+    <string name="response">Timing!</string>
 </resources>
