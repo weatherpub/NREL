@@ -4,10 +4,15 @@ import android.app.IntentService;
 import android.content.Intent;
 import android.util.Log;
 
+import androidx.lifecycle.MutableLiveData;
+
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import edu.csueb.Model.CocktailModel;
+import edu.csueb.Pattern.Singleton.CocktailViewModel;
 import okhttp3.Headers;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -15,13 +20,19 @@ import okhttp3.Response;
 
 public class DelayedMessageService extends IntentService {
 
+    private final MutableLiveData<ArrayList<CocktailModel>> liveData;
+
+    public CocktailViewModel cocktailViewModel = CocktailViewModel.getInstance(); // CocktailViewModel.getInstance() - gets an instance of CocktailViewModel
+    public ArrayList<CocktailModel> model = cocktailViewModel.getData(); // getData() - anyone can get a copy of the Model data.
+
     private final OkHttpClient client;
     private Timer timer;
     public static final String EXTRA_MESSAGE = "Trans Women is the EXTRA_MESSAGE";
 
     public DelayedMessageService() {
         super("DelayedMessageService");
-         client = new OkHttpClient();
+        this.liveData = new MutableLiveData<>();
+        client = new OkHttpClient();
     }
 
     /**
@@ -31,15 +42,17 @@ public class DelayedMessageService extends IntentService {
      */
     @Override
     protected void onHandleIntent(Intent intent) {
+        // start the service in onHandleIntent()
         startTimer();
     }
 
     private int seconds() {
-        return (6000 * 10); // 60 seconds
+        return (12000 * 10); // 60 seconds
     }
 
     // All long running code should be placed within startTimer()
     private void startTimer() {
+        Log.i("log", "Timer Started...");
         TimerTask task = new TimerTask() {
             @Override
             public void run() {
@@ -47,7 +60,7 @@ public class DelayedMessageService extends IntentService {
                 Log.i("log", "* Delayed Message Service - Service Started in onCreate() *");
                 Log.i("log", "* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *");
 
-                Request request = new Request.Builder().url("https://api.weather.gov/openapi.json").build();
+                Request request = new Request.Builder().url("https://thecocktaildb.com/api/json/v1/1/search.php?s=vodka").build();
 
                 try(Response response = client.newCall(request).execute()) {
                     if(!response.isSuccessful()) throw new IOException("Unexpected code " + response);
@@ -59,7 +72,7 @@ public class DelayedMessageService extends IntentService {
                     }
 
                     Log.i("log", "Response => " + response.body().string());
-
+                    Log.i("log", "Android Build Model: " + android.os.Build.MODEL);
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
