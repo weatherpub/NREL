@@ -19,19 +19,12 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 public class DelayedMessageService extends IntentService {
-
-    private final MutableLiveData<ArrayList<CocktailModel>> liveData;
-
-    public CocktailViewModel cocktailViewModel = CocktailViewModel.getInstance(); // CocktailViewModel.getInstance() - gets an instance of CocktailViewModel
-    public ArrayList<CocktailModel> model = cocktailViewModel.getData(); // getData() - anyone can get a copy of the Model data.
-
     private final OkHttpClient client;
     private Timer timer;
     public static final String EXTRA_MESSAGE = "Trans Women is the EXTRA_MESSAGE";
 
     public DelayedMessageService() {
         super("DelayedMessageService");
-        this.liveData = new MutableLiveData<>();
         client = new OkHttpClient();
     }
 
