@@ -40,15 +40,22 @@ public class NotificationsFragment extends Fragment {
         Log.i("LOG", "createNotificationChannel method called");
 
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            CharSequence name = getString(R.string.channel_name);
-            String description = getString(R.string.channel_description);
+            CharSequence name = getString(R.string.channel_name); // Name of the notification toggle setting.
+            String description = getString(R.string.channel_description); // Shows up at the bottom of the notification.
 
+            /**
+             * Set the importance of the channel.
+             */
             int importance = NotificationManager.IMPORTANCE_HIGH;
 
             NotificationChannel channel = new NotificationChannel("TransTube", name, importance);
+            channel.enableLights(true);
+            channel.setLightColor(4);
+            channel.setShowBadge(true);
+            channel.setLockscreenVisibility(1);
             channel.setDescription(description);
 
-            NotificationManager notificationManager = (NotificationManager) getContext().getSystemService(NotificationManager.class);
+            NotificationManager notificationManager = (NotificationManager) getActivity().getSystemService(NotificationManager.class);
             notificationManager.createNotificationChannel(channel);
         }
     }
@@ -63,9 +70,10 @@ public class NotificationsFragment extends Fragment {
 
         /**
          * Add Notifications to settings (this works by the way)
+         * Open the notification channel settings.
          */
         Intent intent = new Intent(Settings.ACTION_CHANNEL_NOTIFICATION_SETTINGS);
-        intent.putExtra(Settings.EXTRA_APP_PACKAGE, "Electric Vehicle App");
+        intent.putExtra(Settings.EXTRA_APP_PACKAGE, getActivity().getPackageName());
         intent.putExtra(Settings.EXTRA_CHANNEL_ID, getId());
         startActivity(intent);
 
@@ -77,7 +85,7 @@ public class NotificationsFragment extends Fragment {
 
         /* When you call getContext() from an Fragment, you will get the context of the activity in which that fragment is hosted in. */
 
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(getActivity(), "sample")
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(getActivity(), "simple_channel_id")
                 .setAutoCancel(true)             // .setAutoCancel   > This makes the notification disappear when the user clicks on it.
                 .setContentText("YouTube")
                 .setContentTitle(getString(R.string.question))
