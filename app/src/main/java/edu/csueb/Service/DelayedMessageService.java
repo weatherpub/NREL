@@ -4,15 +4,10 @@ import android.app.IntentService;
 import android.content.Intent;
 import android.util.Log;
 
-import androidx.lifecycle.MutableLiveData;
-
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import edu.csueb.Model.CocktailModel;
-import edu.csueb.Pattern.Singleton.CocktailViewModel;
 import okhttp3.Headers;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -40,7 +35,7 @@ public class DelayedMessageService extends IntentService {
     }
 
     private int seconds() {
-        return (12000 * 10); // 60 seconds
+        return (10000); // 60 seconds
     }
 
     // All long running code should be placed within startTimer()
